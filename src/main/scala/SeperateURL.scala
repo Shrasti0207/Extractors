@@ -7,14 +7,14 @@ object SeperateURL {
   // apply() method for creating a new SeperateURL object
   def apply(url: String) = new SeperateURL(url)
   // unapply() method for pattern matching on SeperateURL objects
-  def unapply(inputString: SeperateURL): Option[(String, String, String)] = {
-    val url1=inputString.url
+  def unapply(inputUrl: SeperateURL): Option[(String, String, String)] = {
+    val ExtractUrl = inputUrl.url
     Try {
-      val protocolEnd = url1.indexOf(":")
-      val domainEnd = url1.indexOf("/", protocolEnd + 3)
-      val protocol = inputString.url.substring(0, protocolEnd)
-      val domain = inputString.url.substring(protocolEnd + 3, domainEnd)
-      val path = inputString.url.substring(domainEnd + 1)
+      val protocolEnd = ExtractUrl.indexOf(":")
+      val domainEnd = ExtractUrl.indexOf("/", protocolEnd + 3)
+      val protocol = ExtractUrl.substring(0, protocolEnd)
+      val domain = ExtractUrl.substring(protocolEnd + 3, domainEnd)
+      val path = ExtractUrl.substring(domainEnd + 1)
       (protocol, domain, path)
     }.toOption
   }
